@@ -82,9 +82,10 @@ impl<C: PixelColor> TextRenderer for BdfTextStyle<'_, C> {
             .map(|c| self.font.get_glyph(c).device_width)
             .sum();
 
-        // TODO: calculate bounding box
+        let size = Size::new(dx, self.font.line_height);
+
         TextMetrics {
-            bounding_box: Rectangle::new(position, Size::zero()),
+            bounding_box: Rectangle::new(position, size),
             next_position: position + Size::new(dx, 0),
         }
     }
